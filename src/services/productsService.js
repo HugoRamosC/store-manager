@@ -11,9 +11,15 @@ const getById = async (productId) => {
   if (type) return message;
 
   const product = await productsModel.getById(productId);
-  if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  if (!product) {
+    return {
+      error: {
+        status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
+      },
+    };
+  }
 
-  return { type: '', message: product };
+  return product;
 };
 
 module.exports = {
