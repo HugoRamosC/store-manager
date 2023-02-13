@@ -7,10 +7,10 @@ const getAll = async () => {
 };
 
 const getById = async (productId) => {
-  const { error } = validateId(productId);
-  if (error.type) return error;
+  const { type, message } = validateId(productId);
+  if (type) return message;
 
-  const product = productsModel.getById(productId);
+  const product = await productsModel.getById(productId);
   if (!product) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
 
   return { type: '', message: product };

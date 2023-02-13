@@ -9,11 +9,11 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res, next) => {
   const { id } = req.params;
-  const { type, message } = await productsService.getById(id);
+  const error = await productsService.getById(id);
 
-  if (type) return next(type);
+  if (error.type) return next(error);
   
-  return res.status(HTTP_OK_STATUS).json(message);
+  return res.status(HTTP_OK_STATUS).json(error.message);
 };
 
 module.exports = {
