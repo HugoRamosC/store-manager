@@ -17,7 +17,7 @@ const getById = async (productId) => {
 const createProduct = async ({ name }) => {
   const query = 'INSERT INTO products (name) VALUES (?)';
   const [newProduct] = await connection.execute(query, [name]);
-
+  console.log('kkkkkkkkkk', newProduct);
   return newProduct.insertId;
 };
 

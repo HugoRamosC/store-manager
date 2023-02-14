@@ -25,7 +25,6 @@ const createProduct = async ({ name }) => {
   if (error.status) throw error;
 
   const id = await productsModel.createProduct({ name });
-
   return { id, name };
 };
 

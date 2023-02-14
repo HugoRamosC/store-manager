@@ -25,9 +25,12 @@ const createProduct = async (req, res, next) => {
   try {
     const { name } = req.body;
     const newProduct = await productsService.createProduct({ name });
-  
+    console.log('kkkkkkkkkk', newProduct);
+
     return res.status(HTTP_CREATED_STATUS).json(newProduct);
   } catch (error) {
+    console.log('kkkkkkkkkk', error);
+
     next(error);
   }
 };
