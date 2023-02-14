@@ -62,7 +62,7 @@ describe('Products Controller Tests', function () {
       expect(next).calledWith(notFoundObjMock.error);
     });
 
-    it('Should return status 200 and one product', async function () {
+    it('Should return status 200 and requisited product', async function () {
       req.params = { id: 1 };
 
       sinon.stub(productsService, 'getById')
