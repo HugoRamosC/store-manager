@@ -1,6 +1,7 @@
 const productsService = require('../services/productsService');
 
 const HTTP_OK_STATUS = 200;
+const HTTP_CREATED_STATUS = 201;
 
 const getAll = async (_req, res) => {
   const products = await productsService.getAll();
@@ -8,15 +9,28 @@ const getAll = async (_req, res) => {
 };
 
 const getById = async (req, res, next) => {
-  const { id } = req.params;
-  const product = await productsService.getById(id);
+  try {
+    const { id } = req.params;
+    const product = await productsService.getById(id);
+    
+    if (product.status) return next(product);
+    
+    return res.status(HTTP_OK_STATUS).json(product);
+  } catch (error) {
+    next(error);
+  }
+};
 
-  if (product.error) return next(product.error);
+const createProduct = async (req, res) => {
+  const { name } = req.body;
   
-  return res.status(HTTP_OK_STATUS).json(product);
+  const newProduct = await productsService.createProduct({ name });
+
+  return res.status(HTTP_CREATED_STATUS).json(newProduct);
 };
 
 module.exports = {
   getAll,
   getById,
+  createProduct,
 };

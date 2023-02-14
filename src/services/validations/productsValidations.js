@@ -1,12 +1,20 @@
-const { idSchema } = require('./schemas');
+const { idSchema, nameSchema } = require('./schemas');
 
 const validateId = (id) => {
   const { error } = idSchema.validate(id);
-  if (error) return { type: 'INVALID_ID', message: 'Invalid ID' };
+  if (error) return { status: 'BAD_REQUEST_STATUS', message: error.message };
 
-  return { type: null, message: '' };
+  return { status: null, message: '' };
+};
+
+const validateName = (name) => {
+  const { error } = nameSchema.validate(name);
+  if (error) return { status: 'BAD_REQUEST_STATUS', message: error.message };
+
+  return { status: null, message: '' };
 };
 
 module.exports = {
   validateId,
+  validateName,
 };
