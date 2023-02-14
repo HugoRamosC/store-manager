@@ -21,8 +21,8 @@ const getById = async (productId) => {
 };
 
 const createProduct = async ({ name }) => {
-  const { type, message } = validateName(name);
-  if (type) return message;
+  const error = validateName(name);
+  if (error.status) throw error;
 
   const id = await productsModel.createProduct({ name });
 
