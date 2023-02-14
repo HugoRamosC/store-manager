@@ -10,7 +10,16 @@ const nameSchema = Joi.string().min(5).max(30).required()
     'string.base': '{#label} is required',
   });
 
+const saleSchema = Joi.object().keys({
+  productId: Joi.number().integer().min(1).required(),
+  quantity: Joi.number().integer().min(1).required(),
+}).messages({
+  'number.base': '{#key} is required',
+  'number.min': '{#key} must be greater than or equal to {#limit}',
+});
+
 module.exports = {
   idSchema,
   nameSchema,
+  saleSchema,
 };

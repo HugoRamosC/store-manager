@@ -11,10 +11,8 @@ const getAll = async (_req, res) => {
 const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const product = await productsService.getById(id);
-    
-    if (product.status) return next(product);
-    
+    const product = await productsService.getById(id); 
+    if (product.status) next(product);
     return res.status(HTTP_OK_STATUS).json(product);
   } catch (error) {
     next(error);
@@ -25,12 +23,8 @@ const createProduct = async (req, res, next) => {
   try {
     const { name } = req.body;
     const newProduct = await productsService.createProduct({ name });
-    console.log('kkkkkkkkkk', newProduct);
-
     return res.status(HTTP_CREATED_STATUS).json(newProduct);
   } catch (error) {
-    console.log('kkkkkkkkkk', error);
-
     next(error);
   }
 };
