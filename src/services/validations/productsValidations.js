@@ -21,16 +21,14 @@ const validateName = (name) => {
   return { status: null, message: '' };
 };
 
-const validateSale = (saleList) => {
-  const { error } = saleSchema.validate(saleList);
+const validateSale = (sale) => {
+  const { error } = saleSchema.validate(sale);
   if (error) {
-    switch (error.details[0].type) {
-      case 'any.required':
-        return { status: 'BAD_REQUEST_STATUS', message: error.message };
-      case 'number.min':
-        return { status: 'INVALID_VALUE', message: error.message };
-      default:
-        return { status: 'PRODUCT_NOT_FOUND', message: error.message };
+    if (error.details[0].type === 'any.required') {
+      return { status: 'BAD_REQUEST_STATUS', message: error.message };
+    }
+    if (error.details[0].type === 'number.min') {
+      return { status: 'INVALID_VALUE', message: error.message };
     }
   }
   return { status: null, message: '' };

@@ -1,16 +1,26 @@
 const salesModel = require('../models/salesModel');
+const productsService = require('./productsService');
 const { validateSale } = require('./validations/productsValidations');
 
 const newSale = async (saleList) => {
-  const error = saleList.map((item) => {
+  const validationPromises = saleList.map(async (item) => {
+    console.log('validationnnnnnnn', item);
     const errorValidation = validateSale(item);
     if (errorValidation.status) return errorValidation;
-    return false;
+    const notFoundProduct = await productsService.getById(item.productId);
+    if (notFoundProduct.status) return notFoundProduct;
+    return item;
   });
-  if (error.some((e) => !e)) throw error;
-
-  const { id, itemsSold } = await salesModel.newSale(saleList);
-
+  const validationArr = await Promise.all(validationPromises);
+  if (validationArr.some((valid) => valid.status)) {
+    const error = validationArr.find((err) => err.status);
+    console.log('errorrrrrrr', error);
+    throw error;
+  }
+  const id = await salesModel.saleRegister();
+  const itemsSold = validationArr.filter((valid) => valid.productId);
+  console.log('productttttt', {id, itemsSold});
+  await salesModel.newSale(id, itemsSold);
   return { id, itemsSold };
 };
 

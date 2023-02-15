@@ -1,24 +1,29 @@
 const connection = require('./connection');
+const {
+  queryInsertSales,
+  queryInsertSaleProducts,
+  queryListAllSales,
+} = require('./salesQuerys');
 
-const newSale = async (saleList) => {
-  const querylastSale = 'SELECT MAX(sale_id) FROM sales_products;';
-  const queryProducts = 'INSERT INTO sales_products (sale_id, product_id, quantity VALUES(? ? ?)';
-  const querySales = 'INSERT INTO sales (date) VALUES(NOW())';
+const saleRegister = async () => {
+  const [sale] = await connection.execute(queryInsertSales);
+  return sale.insertId;
+};
 
-  await connection.execute(querySales);
-
-  const id = connection.execute(querylastSale);
-
-  const itemsSold = await Promise.all(saleList.map((product) => {
-    const saleRegistred = connection.execute(
-      queryProducts, [id, product.productId, product.quantity],
+const newSale = async (id, saleList) => {
+  await Promise.all(saleList.map(async (product) => {
+    await connection.execute(
+      queryInsertSaleProducts, [id, product.productId, product.quantity],
     );
-    return saleRegistred;
   }));
+};
 
-  return { id, itemsSold };
+const getSales = async () => {
+  const [products] = await connection.execute(queryListAllSales);
+  return products;
 };
 
 module.exports = {
+  saleRegister,
   newSale,
 };
