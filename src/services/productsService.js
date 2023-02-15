@@ -30,10 +30,16 @@ const updateProduct = async (id, newName) => {
   const errorName = validateName(newName);
   if (errorName.status) throw errorName;
   const errorId = await getById(id);
-  if (errorId.status) return errorId;
+  if (errorId.status) throw errorId;
   await productsModel.updateProduct(id, newName);
-  const updatedProduct = await productsModel.getById(id);
-  return updatedProduct;
+  const updated = await productsModel.getById(id);
+  return updated;
+};
+
+const deleteProduct = async (id) => {
+  const error = await getById(id);
+  if (error.status) throw error;
+  await productsModel.deleteProduct(id);
 };
 
 module.exports = {
@@ -41,4 +47,5 @@ module.exports = {
   getById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

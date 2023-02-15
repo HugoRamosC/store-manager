@@ -2,6 +2,7 @@ const productsService = require('../services/productsService');
 
 const HTTP_OK_STATUS = 200;
 const HTTP_CREATED_STATUS = 201;
+const HTTP_DELETED_STATUS = 204;
 
 const getAll = async (_req, res) => {
   const products = await productsService.getAll();
@@ -32,8 +33,18 @@ const updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name } = req.body;
-    const updatedProduct = await productsService.updateProduct(id, name);
-    res.status(HTTP_OK_STATUS).json(updatedProduct);
+    const updated = await productsService.updateProduct(id, name);
+    return res.status(HTTP_OK_STATUS).json(updated);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await productsService.deleteProduct(id);
+    return res.status(HTTP_DELETED_STATUS).end();
   } catch (error) {
     next(error);
   }
@@ -44,4 +55,5 @@ module.exports = {
   getById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

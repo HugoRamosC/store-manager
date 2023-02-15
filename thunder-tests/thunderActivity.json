@@ -80,44 +80,6 @@
     "tests": []
   },
   {
-    "_id": "72792179-b583-408f-9172-b070827a0500",
-    "colId": "history",
-    "containerId": "",
-    "name": "localhost:3000/1",
-    "url": "localhost:3000/1",
-    "method": "PUT",
-    "sortNum": 0,
-    "created": "2023-02-15T22:26:48.443Z",
-    "modified": "2023-02-15T22:26:48.443Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "04fa9c72-04b3-4fab-ba14-a17e55661a24",
-    "colId": "history",
-    "containerId": "",
-    "name": "localhost:3000/products/1",
-    "url": "localhost:3000/products/1",
-    "method": "PUT",
-    "sortNum": 0,
-    "created": "2023-02-15T22:28:54.526Z",
-    "modified": "2023-02-15T22:28:54.526Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "b9c7d1e8-276a-4687-9190-149300486b46",
     "colId": "history",
     "containerId": "",
@@ -137,79 +99,45 @@
     "tests": []
   },
   {
-    "_id": "8d1b5816-51d1-4fc4-a180-464c962924f9",
+    "_id": "64bff19c-7247-4642-8831-11f2316f8ec5",
     "colId": "history",
     "containerId": "",
-    "name": "localhost:3000/products/3",
-    "url": "localhost:3000/products/3",
-    "method": "PUT",
+    "name": "localhost:3000/products/9999",
+    "url": "localhost:3000/products/9999",
+    "method": "DELETE",
     "sortNum": 0,
-    "created": "2023-02-15T22:36:22.075Z",
-    "modified": "2023-02-15T22:36:22.075Z",
+    "created": "2023-02-15T23:12:32.759Z",
+    "modified": "2023-02-15T23:12:32.759Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"taco super patos\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
-    "_id": "89d176f1-f56c-45d1-9724-66cf28181f4b",
+    "_id": "9e224873-8e3a-4fb6-9a23-5a0b009ca88a",
     "colId": "history",
     "containerId": "",
-    "name": "localhost:3000/products/4",
-    "url": "localhost:3000/products/4",
-    "method": "PUT",
+    "name": "localhost:3000/products/2",
+    "url": "localhost:3000/products/2",
+    "method": "DELETE",
     "sortNum": 0,
-    "created": "2023-02-15T22:37:01.668Z",
-    "modified": "2023-02-15T22:37:01.668Z",
+    "created": "2023-02-15T23:15:31.164Z",
+    "modified": "2023-02-15T23:15:31.164Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"taco super patos\"\n}",
-      "form": []
-    },
     "tests": []
   },
   {
-    "_id": "5063af60-f57b-47d7-864f-be9baf4cd28a",
+    "_id": "a344a899-ccf9-41c8-91bb-3e09eacbf13d",
     "colId": "history",
     "containerId": "",
-    "name": "localhost:3000/products/99999",
-    "url": "localhost:3000/products/99999",
-    "method": "PUT",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/1",
+    "method": "DELETE",
     "sortNum": 0,
-    "created": "2023-02-15T22:38:39.153Z",
-    "modified": "2023-02-15T22:45:13.652Z",
+    "created": "2023-02-15T23:25:36.486Z",
+    "modified": "2023-02-15T23:25:36.486Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"taco super patos\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "ba7b9119-7498-4cac-80f5-d3df53f3a1cb",
-    "colId": "history",
-    "containerId": "",
-    "name": "localhost:3000/products/31",
-    "url": "localhost:3000/products/31",
-    "method": "PUT",
-    "sortNum": 0,
-    "created": "2023-02-15T22:48:13.826Z",
-    "modified": "2023-02-15T22:48:13.826Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"taco super patos\"\n}",
-      "form": []
-    },
     "tests": []
   }
 ]
