@@ -24,9 +24,20 @@ INNER JOIN sales AS S
   ON SP.sale_id = S.id
 WHERE SP.sale_id = ?;`;
 
+// https://stackoverflow.com/questions/1233451/delete-from-two-tables-in-one-query
+const queryDeleteSale = `
+DELETE
+  SP,
+  S
+FROM sales_products AS SP
+INNER JOIN sales AS S
+WHERE SP.sale_id = S.id
+AND SP.sale_id = ?;`;
+
 module.exports = {
   queryInsertSales,
   queryInsertSaleProducts,
   queryListAllSales,
   queryGetSaleById,
+  queryDeleteSale,
 };

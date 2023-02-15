@@ -2,6 +2,7 @@ const salesService = require('../services/salesService');
 
 const HTTP_OK_STATUS = 200;
 const HTTP_CREATED_STATUS = 201;
+const HTTP_DELETED_STATUS = 204;
 
 const newSale = async (req, res, next) => {
   try {
@@ -18,11 +19,21 @@ const getSales = async (_req, res, _next) => {
   return res.status(HTTP_OK_STATUS).json(sales);
 };
 
-const getSalesById = async (req, res, next) => {
+const getSaleById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const sale = await salesService.getSalesById(id);
+    const sale = await salesService.getSaleById(id);
     return res.status(HTTP_OK_STATUS).json(sale);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteSale = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await salesService.deleteSale(id);
+    return res.status(HTTP_DELETED_STATUS).end();
   } catch (error) {
     next(error);
   }
@@ -31,5 +42,6 @@ const getSalesById = async (req, res, next) => {
 module.exports = {
   newSale,
   getSales,
-  getSalesById,
+  getSaleById,
+  deleteSale,
 };

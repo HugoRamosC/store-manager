@@ -5,6 +5,7 @@ const {
   queryInsertSaleProducts,
   queryListAllSales,
   queryGetSaleById,
+  queryDeleteSale,
 } = require('./salesQuerys');
 
 const saleRegister = async () => {
@@ -25,14 +26,20 @@ const getSales = async () => {
   return sales;
 };
 
-const getSalesById = async (id) => {
+const getSaleById = async (id) => {
   const [sale] = await connection.execute(queryGetSaleById, [id]);
   return camelize(sale);
+};
+
+const deleteSale = async (id) => {
+  await connection.execute(queryDeleteSale, [id]);
+  // await connection.execute(queryDeleteSaleProducts, [id]);
 };
 
 module.exports = {
   saleRegister,
   newSale,
   getSales,
-  getSalesById,
+  getSaleById,
+  deleteSale,
 };

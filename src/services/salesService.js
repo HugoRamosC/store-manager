@@ -27,7 +27,7 @@ const getSales = async () => {
   return sales;
 };
 
-const getSalesById = async (id) => {
+const getSaleById = async (id) => {
   const error = validateId(id);
   if (error.status) throw error;
   const allSales = await salesModel.getSales();
@@ -36,13 +36,20 @@ const getSalesById = async (id) => {
     const notFoundError = { status: 'SALE_NOT_FOUND', message: 'Sale not found' };
     throw notFoundError;
   }
-  const sale = await salesModel.getSalesById(id);
+  const sale = await salesModel.getSaleById(id);
   console.log(sale);
   return sale;
+};
+
+const deleteSale = async (id) => {
+  const error = await getSaleById(id);
+  if (error.status) throw error;
+  await salesModel.deleteSale(id);
 };
 
 module.exports = {
   newSale,
   getSales,
-  getSalesById,
+  getSaleById,
+  deleteSale,
 };

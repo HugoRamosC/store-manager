@@ -9,6 +9,8 @@ salesRoute.post('/sales', salesController.newSale);
 
 salesRoute.get('/sales', salesController.getSales);
 
-salesRoute.get('/sales/:id', salesController.getSalesById);
+salesRoute.get('/sales/:id', salesController.getSaleById);
+
+salesRoute.delete('/sales/:id', salesController.deleteSale);
 
 module.exports = salesRoute;
