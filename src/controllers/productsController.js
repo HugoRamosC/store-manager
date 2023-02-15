@@ -28,8 +28,20 @@ const createProduct = async (req, res, next) => {
   }
 };
 
+const updateProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const updatedProduct = await productsService.updateProduct(id, name);
+    res.status(HTTP_OK_STATUS).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   createProduct,
+  updateProduct,
 };

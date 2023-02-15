@@ -3,6 +3,7 @@ const {
   querySelectAll,
   querySelectById,
   queryInsertProducts,
+  queryUpdateProduct,
 } = require('./productsQuerys');
 
 const getAll = async () => {
@@ -20,8 +21,13 @@ const createProduct = async ({ name }) => {
   return newProduct.insertId;
 };
 
+const updateProduct = async (id, newName) => {
+  await connection.execute(queryUpdateProduct, [newName, id]);
+};
+
 module.exports = {
   getAll,
   getById,
   createProduct,
+  updateProduct,
 };
