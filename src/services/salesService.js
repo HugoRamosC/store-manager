@@ -1,6 +1,6 @@
 const salesModel = require('../models/salesModel');
 const productsService = require('./productsService');
-const { validateSale } = require('./validations/productsValidations');
+const { validateSale, validateId } = require('./validations/validations');
 
 const newSale = async (saleList) => {
   const validationPromises = saleList.map(async (item) => {
@@ -21,6 +21,28 @@ const newSale = async (saleList) => {
   return { id, itemsSold };
 };
 
+const getSales = async () => {
+  const sales = await salesModel.getSales();
+  console.log(sales);
+  return sales;
+};
+
+const getSalesById = async (id) => {
+  const error = validateId(id);
+  if (error.status) throw error;
+  const allSales = await salesModel.getSales();
+  const arrSalesId = allSales.map((sale) => +sale.saleId);
+  if (!arrSalesId.includes(+id)) {
+    const notFoundError = { status: 'SALE_NOT_FOUND', message: 'Sale not found' };
+    throw notFoundError;
+  }
+  const sale = await salesModel.getSalesById(id);
+  console.log(sale);
+  return sale;
+};
+
 module.exports = {
   newSale,
+  getSales,
+  getSalesById,
 };

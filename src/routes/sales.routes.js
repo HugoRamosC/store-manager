@@ -7,4 +7,8 @@ salesRoute.use(express.json());
 
 salesRoute.post('/sales', salesController.newSale);
 
+salesRoute.get('/sales', salesController.getSales);
+
+salesRoute.get('/sales/:id', salesController.getSalesById);
+
 module.exports = salesRoute;

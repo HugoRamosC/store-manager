@@ -1,8 +1,10 @@
+const camelize = require('camelize');
 const connection = require('./connection');
 const {
   queryInsertSales,
   queryInsertSaleProducts,
   queryListAllSales,
+  queryGetSaleById,
 } = require('./salesQuerys');
 
 const saleRegister = async () => {
@@ -19,12 +21,18 @@ const newSale = async (id, saleList) => {
 };
 
 const getSales = async () => {
-  const [products] = await connection.execute(queryListAllSales);
-  return products;
+  const [sales] = await connection.execute(queryListAllSales);
+  return sales;
+};
+
+const getSalesById = async (id) => {
+  const [sale] = await connection.execute(queryGetSaleById, [id]);
+  return camelize(sale);
 };
 
 module.exports = {
   saleRegister,
   newSale,
   getSales,
+  getSalesById,
 };
