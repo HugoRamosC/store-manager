@@ -26,4 +26,5 @@ const getSales = async () => {
 module.exports = {
   saleRegister,
   newSale,
+  getSales,
 };
