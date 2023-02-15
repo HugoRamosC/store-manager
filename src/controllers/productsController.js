@@ -12,7 +12,6 @@ const getById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const product = await productsService.getById(id); 
-    if (product.status) next(product);
     return res.status(HTTP_OK_STATUS).json(product);
   } catch (error) {
     next(error);

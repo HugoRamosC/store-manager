@@ -9,21 +9,19 @@ const getAll = async () => {
 const getById = async (productId) => {
   const error = validateId(productId);
   if (error.status) throw error;
-
   const product = await productsModel.getById(productId);
   if (!product) {
-    return {
-        status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
+    const notFoundError = {
+      status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
     };
+    throw notFoundError;
   }
-
   return product;
 };
 
 const createProduct = async ({ name }) => {
   const error = validateName(name);
   if (error.status) throw error;
-
   const id = await productsModel.createProduct({ name });
   return { id, name };
 };
