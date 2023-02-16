@@ -8,10 +8,15 @@ const queryUpdateProduct = 'UPDATE products SET name = ? WHERE id = ?;';
 
 const queryDeleteProduct = 'DELETE FROM products WHERE id = ?;';
 
+const querySearchProduct = `
+SELECT * FROM products
+WHERE name LIKE ?;`;
+
 module.exports = {
   querySelectAll,
   querySelectById,
   queryInsertProducts,
   queryUpdateProduct,
   queryDeleteProduct,
+  querySearchProduct,
 };

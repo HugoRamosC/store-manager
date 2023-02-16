@@ -5,6 +5,7 @@ const {
   queryInsertProducts,
   queryUpdateProduct,
   queryDeleteProduct,
+  querySearchProduct,
 } = require('./productsQuerys');
 
 const getAll = async () => {
@@ -30,10 +31,17 @@ const deleteProduct = async (id) => {
   await connection.execute(queryDeleteProduct, [id]);
 };
 
+const searchProduct = async (searchTerm) => {
+  const [productsFound] = await connection
+    .execute(querySearchProduct, [`%${searchTerm}%`]);
+  return productsFound;
+};
+
 module.exports = {
   getAll,
   getById,
   createProduct,
   updateProduct,
   deleteProduct,
+  searchProduct,
 };

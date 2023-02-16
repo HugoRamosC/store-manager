@@ -7,6 +7,8 @@ productsRoute.use(express.json());
 
 productsRoute.get('/products', productsController.getAll);
 
+productsRoute.get('/products/search', productsController.searchProduct);
+
 productsRoute.get('/products/:id', productsController.getById);
 
 productsRoute.post('/products', productsController.createProduct);
