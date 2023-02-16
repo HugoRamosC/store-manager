@@ -6,6 +6,7 @@ const {
   queryListAllSales,
   queryGetSaleById,
   queryDeleteSale,
+  queryUpdateSale,
 } = require('./salesQuerys');
 
 const saleRegister = async () => {
@@ -33,7 +34,14 @@ const getSaleById = async (id) => {
 
 const deleteSale = async (id) => {
   await connection.execute(queryDeleteSale, [id]);
-  // await connection.execute(queryDeleteSaleProducts, [id]);
+};
+
+const updateSale = async (saleId, saleList) => {
+  await Promise.all(saleList.map(async (product) => {
+    await connection.execute(
+      queryUpdateSale, [product.quantity, product.productId, saleId],
+    );
+  }));
 };
 
 module.exports = {
@@ -42,4 +50,5 @@ module.exports = {
   getSales,
   getSaleById,
   deleteSale,
+  updateSale,
 };

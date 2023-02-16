@@ -23,7 +23,6 @@ const newSale = async (saleList) => {
 
 const getSales = async () => {
   const sales = await salesModel.getSales();
-  console.log(sales);
   return sales;
 };
 
@@ -37,7 +36,6 @@ const getSaleById = async (id) => {
     throw notFoundError;
   }
   const sale = await salesModel.getSaleById(id);
-  console.log(sale);
   return sale;
 };
 
@@ -47,9 +45,19 @@ const deleteSale = async (id) => {
   await salesModel.deleteSale(id);
 };
 
+const updateSale = async (saleId, saleList) => {
+  const notFoundError = await getSaleById(saleId);
+  if (notFoundError.status) throw notFoundError;
+  const validations = await newSale(saleList);
+  await deleteSale(validations.id);
+  await salesModel.updateSale(saleId, saleList);
+  return { saleId: +saleId, itemsUpdated: validations.itemsSold };
+};
+
 module.exports = {
   newSale,
   getSales,
   getSaleById,
   deleteSale,
+  updateSale,
 };

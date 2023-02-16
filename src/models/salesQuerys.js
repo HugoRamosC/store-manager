@@ -1,7 +1,9 @@
 const queryInsertSales = 'INSERT INTO sales (date) VALUES(NOW());';
 
-const queryInsertSaleProducts = `INSERT INTO 
-sales_products(sale_id, product_id, quantity) VALUE(?, ?, ?);`;
+const queryInsertSaleProducts = `
+INSERT INTO 
+sales_products (sale_id, product_id, quantity)
+VALUE (?, ?, ?);`;
 
 const queryListAllSales = `
 SELECT 
@@ -34,10 +36,18 @@ INNER JOIN sales AS S
 WHERE SP.sale_id = S.id
 AND SP.sale_id = ?;`;
 
+const queryUpdateSale = `
+UPDATE
+  sales_products
+SET
+  quantity = ?
+WHERE product_id = ? AND sale_id = ?;`;
+
 module.exports = {
   queryInsertSales,
   queryInsertSaleProducts,
   queryListAllSales,
   queryGetSaleById,
   queryDeleteSale,
+  queryUpdateSale,
 };
