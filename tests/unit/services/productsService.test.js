@@ -57,6 +57,9 @@ describe('Products Service Tests', function () {
   });
 
   describe('Create/register new product', function () {
+    const notFoundObjMock = {
+      status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
+    };
 
     afterEach(() => sinon.restore());
 
