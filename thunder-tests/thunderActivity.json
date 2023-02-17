@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-02-14T02:54:53.559Z",
-    "modified": "2023-02-16T23:37:01.706Z",
+    "modified": "2023-02-17T19:12:51.505Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"Pro\"\n}",
+      "raw": "{\n  \"name\": \"Prodsfdas\"\n}",
       "form": []
     },
     "tests": []
@@ -156,11 +156,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/1234",
-    "url": "localhost:3000/products/1234",
+    "url": "localhost:3000/products/1212",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-16T18:25:12.368Z",
-    "modified": "2023-02-16T18:25:12.368Z",
+    "modified": "2023-02-17T19:38:18.261Z",
     "headers": [],
     "params": [],
     "tests": []

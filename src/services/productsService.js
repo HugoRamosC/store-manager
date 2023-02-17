@@ -19,10 +19,10 @@ const getById = async (productId) => {
   return product;
 };
 
-const createProduct = async ({ name }) => {
+const createProduct = async (name) => {
   const error = validateName(name);
   if (error.status) throw error;
-  const id = await productsModel.createProduct({ name });
+  const id = await productsModel.createProduct(name);
   return { id, name };
 };
 
@@ -40,6 +40,7 @@ const deleteProduct = async (id) => {
   const error = await getById(id);
   if (error.status) throw error;
   await productsModel.deleteProduct(id);
+  return true;
 };
 
 const searchProduct = async (searchTerm) => {

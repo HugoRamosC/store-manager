@@ -15,10 +15,12 @@ const getAll = async () => {
 
 const getById = async (productId) => {
   const [[product]] = await connection.execute(querySelectById, [productId]);
+  console.log(product);
+  if (!product) return false;
   return product;
 };
 
-const createProduct = async ({ name }) => {
+const createProduct = async (name) => {
   const [newProduct] = await connection.execute(queryInsertProducts, [name]);
   return newProduct.insertId;
 };
