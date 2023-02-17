@@ -43,7 +43,6 @@ describe('Products Model Tests', function () {
 
   describe('Create/register new product', function () {
     it('Should return new product id', async function () {
-      const newId = 4;
       const connectionResponse = {
         fieldCount: 0,
         affectedRows: 1,
@@ -56,7 +55,6 @@ describe('Products Model Tests', function () {
       sinon.stub(connection, 'execute').resolves([connectionResponse]);
 
       const response = await productsModel.createProduct('Produto1');
-      console.log('modelllll', response);
 
       expect(response).equal(connectionResponse.insertId);
     });

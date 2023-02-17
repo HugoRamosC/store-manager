@@ -23,23 +23,23 @@ describe('Products Service Tests', function () {
     });
   });
 
-  describe('List product by ID', function () {
-    const notFoundObjMock = {
-      status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
-    };
+  // describe('List product by ID', function () {
+  //   const notFoundObjMock = {
+  //     status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
+  //   };
 
-    afterEach(() => sinon.restore());
+  //   afterEach(() => sinon.restore());
 
-    // it('Should return not found error object with a non-existent id', async function () {
-    //   const productIdNonExistent = 09081989;
+  //   it('Should return not found error object with a non-existent id', async function () {
+  //     const productIdNonExistent = 09081989;
 
-    //   sinon.stub(productsModel, 'getById')
-    //     .resolves(false);
+  //     sinon.stub(productsModel, 'getById')
+  //       .resolves(false);
 
-    //   const product = await productsService.getById(productIdNonExistent);
-
-    //   expect(product).equal(notFoundObjMock);
-    // });
+  //     const error = await productsService.getById(productIdNonExistent);
+  //     console.log('testtttt', error);
+  //     expect(error).throw(notFoundObjMock);
+  //   });
 
     it('Should return a product with a valid id', async function () {
       const productId = 1;
@@ -53,46 +53,40 @@ describe('Products Service Tests', function () {
     });
   });
 
-  // describe('Create/register new product', function () {
-  //   const notFoundObjMock = {
-  //     status: 404, message: 'Product not found',
-  //   };
+  describe('Create/register new product', function () {
+    const notFoundObjMock = {
+      status: 404, message: 'Product not found',
+    };
 
-  //   afterEach(() => sinon.restore());
+    afterEach(() => sinon.restore());
 
-    // it('Should return registred product object', async function () {
-    //   const name = 'Produto1';
-    //   const id = 4
+    it('Should return registred product object', async function () {
+      const name = 'Produto1';
+      const id = 4
 
-    //   sinon.stub(productsModel, 'createProduct')
-    //     .resolves(id);
+      sinon.stub(productsModel, 'createProduct').resolves(id);
 
-    //   const product = await productsService.createProduct(name);
-    //   console.log(product);
+      const product = await productsService.createProduct(name);
 
-    //   expect(product).equal({ 'id': 4, 'name': 'Produto1' });
-    // });
-  // });
+      expect(product).deep.equal({ 'id': 4, 'name': 'Produto1' });
+    });
+  });
 
-  // describe('Update new product', function () {
-  //   const notFoundObjMock = {
-  //     status: 404, message: 'Product not found',
-  //   };
+  describe('Update new product', function () {
 
-  //   afterEach(() => sinon.restore());
+    afterEach(() => sinon.restore());
 
-  //   it('Should return updated object product ', async function () {
-  //     const name = 'Produto1';
-  //     const id = 1;
+    it('Should return updated object product ', async function () {
+      const name = 'Produto1';
+      const id = 1;
 
-  //     sinon.stub(productsModel, 'getById').resolves({ 'id': 1, 'name': 'Produto1' });
+      sinon.stub(productsModel, 'getById').resolves({ 'id': 1, 'name': 'Produto1' });
 
-  //     const product = await productsService.updateProduct(id, name);
-  //     console.log('testttt', product);
+      const product = await productsService.updateProduct(id, name);
 
-  //     expect(product).equal({ 'id': 1, 'name': 'Produto1' });
-  //   });
-  // });
+      expect(product).deep.equal({ 'id': 1, 'name': 'Produto1' });
+    });
+  });
 
   describe('Delete product', function () {
 

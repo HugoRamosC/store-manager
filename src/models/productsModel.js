@@ -37,7 +37,6 @@ const deleteProduct = async (id) => {
 const searchProduct = async (searchTerm) => {
   const [productsFound] = await connection
     .execute(querySearchProduct, [`%${searchTerm}%`]);
-  console.log(productsFound);
   return productsFound;
 };
 
