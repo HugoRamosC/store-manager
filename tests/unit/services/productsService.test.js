@@ -23,12 +23,12 @@ describe('Products Service Tests', function () {
     });
   });
 
-  // describe('List product by ID', function () {
-  //   const notFoundObjMock = {
-  //     status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
-  //   };
+  describe('List product by ID', function () {
+    const notFoundObjMock = {
+      status: 'PRODUCT_NOT_FOUND', message: 'Product not found',
+    };
 
-  //   afterEach(() => sinon.restore());
+    afterEach(() => sinon.restore());
 
   //   it('Should return not found error object with a non-existent id', async function () {
   //     const productIdNonExistent = 09081989;
