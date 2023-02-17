@@ -15,7 +15,6 @@ const getAll = async () => {
 
 const getById = async (productId) => {
   const [[product]] = await connection.execute(querySelectById, [productId]);
-  console.log(product);
   if (!product) return false;
   return product;
 };
@@ -27,15 +26,18 @@ const createProduct = async (name) => {
 
 const updateProduct = async (id, newName) => {
   await connection.execute(queryUpdateProduct, [newName, id]);
+  return true;
 };
 
 const deleteProduct = async (id) => {
   await connection.execute(queryDeleteProduct, [id]);
+  return true;
 };
 
 const searchProduct = async (searchTerm) => {
   const [productsFound] = await connection
     .execute(querySearchProduct, [`%${searchTerm}%`]);
+  console.log(productsFound);
   return productsFound;
 };
 

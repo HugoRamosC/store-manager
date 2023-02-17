@@ -136,16 +136,16 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/products/search?q=",
-    "url": "localhost:3000/products/search?q=",
+    "url": "localhost:3000/products/search?q=mart",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-16T16:39:46.850Z",
-    "modified": "2023-02-16T16:39:46.850Z",
+    "modified": "2023-02-17T20:47:51.141Z",
     "headers": [],
     "params": [
       {
         "name": "q",
-        "value": "",
+        "value": "mart",
         "isPath": false
       }
     ],

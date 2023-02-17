@@ -85,7 +85,7 @@ describe('Products Service Tests', function () {
   //     const name = 'Produto1';
   //     const id = 1;
 
-  //     sinon.stub(productsModel, 'updateProduct').resolves(id);
+  //     sinon.stub(productsModel, 'getById').resolves({ 'id': 1, 'name': 'Produto1' });
 
   //     const product = await productsService.updateProduct(id, name);
   //     console.log('testttt', product);
@@ -95,17 +95,13 @@ describe('Products Service Tests', function () {
   // });
 
   describe('Delete product', function () {
-    const notFoundObjMock = {
-      status: 404, message: 'Product not found',
-    };
 
     afterEach(() => sinon.restore());
 
     it('Should return true to object deleted', async function () {
       const id = 1;
 
-      sinon.stub(productsModel, 'deleteProduct')
-        .resolves(true);
+      sinon.stub(productsModel, 'deleteProduct').resolves(true);
 
       const product = await productsService.deleteProduct(id);
 
