@@ -21,7 +21,6 @@ const getSales = async (_req, res, _next) => {
 
 const getSaleById = async (req, res, next) => {
   try {
-    const { id } = req.params;
     const sale = await salesService.getSaleById(id);
     return res.status(HTTP_OK_STATUS).json(sale);
   } catch (error) {

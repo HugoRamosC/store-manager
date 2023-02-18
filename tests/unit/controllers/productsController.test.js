@@ -64,8 +64,6 @@ describe('Products Controller Tests', function () {
     });
 
     it('Should return status 200 and requisited product', async function () {
-      req.params = { id: 1 };
-
       sinon.stub(productsService, 'getById')
         .resolves(dataMocks.allProductsResponse[0]);
 
