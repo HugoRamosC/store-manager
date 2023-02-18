@@ -49,12 +49,45 @@ describe('Sales Model Tests', function () {
     });
 
     it('Should return a sale by Id', async function () {
+      const id = 2
+      const allSalesList = [
+        {
+          "saleId": 1,
+          "date": "2023-02-17T19:32:24.000Z",
+          "productId": 1,
+          "quantity": 5
+        },
+        {
+          "saleId": 1,
+          "date": "2023-02-17T19:32:24.000Z",
+          "productId": 2,
+          "quantity": 10
+        },
+        {
+          "saleId": 2,
+          "date": "2023-02-17T19:32:24.000Z",
+          "productId": 3,
+          "quantity": 15
+        },
+        {
+          "saleId": 3,
+          "date": "2023-02-18T19:55:51.000Z",
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "saleId": 3,
+          "date": "2023-02-18T19:55:51.000Z",
+          "productId": 2,
+          "quantity": 5
+        }
+      ];
       sinon.stub(connection, 'execute')
-        .resolves([dataMocks.allSalesList[2]]);
+        .resolves([allSalesList[id]]);
 
-      const product = await salesModel.getSaleById(2);
+      const product = await salesModel.getSaleById(id);
 
-      expect(product).deep.equal(dataMocks.allSalesList[2]);
+      expect(product).deep.equal(allSalesList[id]);
     });
   });
 
@@ -70,10 +103,20 @@ describe('Sales Model Tests', function () {
 
   describe('Update sale', function () {
     it('Should return true to update sale', async function () {
+      const saleDescription = [
+        {
+          "productId": 1,
+          "quantity": 1
+        },
+        {
+          "productId": 2,
+          "quantity": 5
+        }
+      ];
       sinon.stub(connection, 'execute').resolves(true);
 
       const response = await salesModel
-        .updateSale(1, dataMocks.saleDescription);
+        .updateSale(1, saleDescription);
 
       expect(response).equal(true);
     });
