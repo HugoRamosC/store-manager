@@ -20,6 +20,7 @@ const newSale = async (id, saleList) => {
       queryInsertSaleProducts, [id, product.productId, product.quantity],
     );
   }));
+  return true;
 };
 
 const getSales = async () => {
@@ -34,6 +35,7 @@ const getSaleById = async (id) => {
 
 const deleteSale = async (id) => {
   await connection.execute(queryDeleteSale, [id]);
+  return true;
 };
 
 const updateSale = async (saleId, saleList) => {
@@ -42,6 +44,7 @@ const updateSale = async (saleId, saleList) => {
       queryUpdateSale, [product.quantity, product.productId, saleId],
     );
   }));
+  return true;
 };
 
 module.exports = {
