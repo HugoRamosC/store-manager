@@ -73,7 +73,7 @@ describe('Sales Model Tests', function () {
       sinon.stub(connection, 'execute').resolves(true);
 
       const response = await salesModel
-        .updateSale(1, dataMocks.updateSaleUpdate);
+        .updateSale(1, dataMocks.saleDescription);
 
       expect(response).equal(true);
     });

@@ -43,6 +43,7 @@ const deleteSale = async (id) => {
   const error = await getSaleById(id);
   if (error.status) throw error;
   await salesModel.deleteSale(id);
+  return true;
 };
 
 const updateSale = async (saleId, saleList) => {
