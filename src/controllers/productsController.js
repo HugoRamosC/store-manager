@@ -15,7 +15,7 @@ const getById = async (req, res, next) => {
     const product = await productsService.getById(id); 
     return res.status(HTTP_OK_STATUS).json(product);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -46,7 +46,7 @@ const deleteProduct = async (req, res, next) => {
     await productsService.deleteProduct(id);
     return res.status(HTTP_DELETED_STATUS).end();
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 

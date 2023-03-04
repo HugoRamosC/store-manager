@@ -53,14 +53,13 @@ describe('Products Controller Tests', function () {
 
     it('Should return status 404 and "NOT FOUND" message', async function () {
       req.params = { id: 26091989 };
-      const response = { "message": "Product not found" }
 
       sinon.stub(productsService, 'getById')
-        .resolves(response);
+        .throws(notFoundObjMock)
 
-      await productsController.getById(req, res, next);
+      const result = await productsController.getById(req, res, next);
 
-      expect(res.json).calledWith(response);
+      expect(result).deep.equal(notFoundObjMock);
     });
 
     it('Should return status 200 and requisited product', async function () {
@@ -185,17 +184,17 @@ describe('Products Controller Tests', function () {
       expect(res.status).calledWith(HTTP_DELETED_STATUS);
     });
 
-    // it('Should return status 404 and "NOT FOUND" message', async function () {
-    //   req.params = { id: 26091989 };
-    //   const error = { "status": 400,  "message": "Product not found" }
+    it('Should return status 404 and "NOT FOUND" message', async function () {
+      req.params = { id: 26091989 };
+      const error = { "status": 404,  "message": "Product not found" }
 
-    //   sinon.stub(productsService, 'deleteProduct')
-    //     .throws(error);
+      sinon.stub(productsService, 'deleteProduct')
+        .throws(error);
 
-    //   await productsController.deleteProduct(req, res, next);
+      const result = await productsController.deleteProduct(req, res, next);
 
-    //   expect(res.json).calledWith({ "message": "Product not found" });
-    // });
+      expect(result).deep.equal(error);
+    });
   });
 
   describe('Search product', function () {
