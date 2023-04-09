@@ -50,6 +50,7 @@ const updateSale = async (saleId, saleList) => {
   const notFoundError = await getSaleById(saleId);
   if (notFoundError.status) throw notFoundError;
   const validations = await newSale(saleList);
+  // refaturar implementando uma transaction
   await deleteSale(validations.id);
   await salesModel.updateSale(saleId, saleList);
   return { saleId: +saleId, itemsUpdated: validations.itemsSold };

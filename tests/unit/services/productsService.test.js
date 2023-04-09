@@ -30,16 +30,14 @@ describe('Products Service Tests', function () {
 
     afterEach(() => sinon.restore());
 
-  //   it('Should return not found error object with a non-existent id', async function () {
-  //     const productIdNonExistent = 09081989;
+    it('Should return not found error object with a non-existent id', async function () {
+      const productIdNonExistent = 09081989;
 
-  //     sinon.stub(productsModel, 'getById')
-  //       .resolves(false);
+      sinon.stub(productsModel, 'getById').resolves(false);
 
-  //     const error = await productsService.getById(productIdNonExistent);
-  //     console.log('testtttt', error);
-  //     expect(error).throw(notFoundObjMock);
-  //   });
+      const error = await productsService.getById(productIdNonExistent);
+      expect(error).deep.equal(notFoundObjMock);
+    });
 
     it('Should return a product with a valid id', async function () {
       const productId = 1;

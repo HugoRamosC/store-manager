@@ -15,7 +15,7 @@ const getById = async (req, res, next) => {
     const product = await productsService.getById(id); 
     return res.status(HTTP_OK_STATUS).json(product);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -25,7 +25,7 @@ const createProduct = async (req, res, next) => {
     const newProduct = await productsService.createProduct(name);
     return res.status(HTTP_CREATED_STATUS).json(newProduct);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -36,7 +36,7 @@ const updateProduct = async (req, res, next) => {
     const updated = await productsService.updateProduct(id, name);
     return res.status(HTTP_OK_STATUS).json(updated);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -46,7 +46,7 @@ const deleteProduct = async (req, res, next) => {
     await productsService.deleteProduct(id);
     return res.status(HTTP_DELETED_STATUS).end();
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -56,7 +56,7 @@ const searchProduct = async (req, res, next) => {
     const productsFound = await productsService.searchProduct(q);
     return res.status(HTTP_OK_STATUS).json(productsFound);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
